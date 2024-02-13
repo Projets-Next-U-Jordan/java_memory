@@ -3,6 +3,7 @@ package fr.thejordan.dev.gui;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.BorderLayout;
+import java.awt.EventQueue;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 
@@ -85,4 +86,18 @@ public class GameChoser {
 		
 		panel_2.add(playButton);
 	}
+	
+	public static void invoke() {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					GameChoser window = new GameChoser();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	
 }

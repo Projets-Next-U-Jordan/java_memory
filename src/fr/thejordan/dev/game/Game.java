@@ -8,9 +8,9 @@ import java.util.List;
 import java.util.Map;
 
 import fr.thejordan.dev.Main;
-import fr.thejordan.dev.gui.CardButton;
 import fr.thejordan.dev.gui.MainWindow;
 import fr.thejordan.dev.helper.Card;
+import fr.thejordan.dev.helper.CardButton;
 
 public class Game {
 
@@ -20,6 +20,7 @@ public class Game {
 	public Map<Integer, Card> slots = new HashMap<Integer, Card>();
 	
 	public Game(Difficulty difficulty) {
+
 		this.difficulty = difficulty;
 		List<Card> chosen = new ArrayList<Card>(Main.images);
 		chosen = chosen.subList(0, this.difficulty.volume()/2);

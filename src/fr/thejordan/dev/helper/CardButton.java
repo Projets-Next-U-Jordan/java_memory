@@ -1,9 +1,7 @@
-package fr.thejordan.dev.gui;
+package fr.thejordan.dev.helper;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-
-import fr.thejordan.dev.helper.Card;
 
 public class CardButton extends JButton {
 	
@@ -13,7 +11,6 @@ public class CardButton extends JButton {
 	public final Card card;
 	
 	public boolean showed = false;
-	public boolean found = false;
 	
 	public CardButton(int slot, Card card) {
 		this.slot = slot;
@@ -22,13 +19,9 @@ public class CardButton extends JButton {
 	}
 	
 	public void toggle() {
-		if (found) return;
 		showed = !showed;
-		if (showed) {
-			this.setIcon(new ImageIcon(card.getImage()));
-		} else {
-			this.setIcon(new ImageIcon(Card.defaultImage()));
-		}
+		if (showed) this.setIcon(new ImageIcon(card.getImage()));
+		else this.setIcon(new ImageIcon(Card.defaultImage()));
 	}
 
 }
