@@ -77,8 +77,8 @@ public class MainWindow {
 	                            Utils.endGameDialog(frame, GameConstants.GAME_OVER_NO_MORE_TRIES_MESSAGE);
 	                        }
 	                    }
+	                    game.lastClicked = null;
 	                }
-	                game.lastClicked = null;
 	            }
 	        }
 	    };
