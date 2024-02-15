@@ -6,13 +6,19 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 
 import fr.thejordan.dev.Main;
 import fr.thejordan.dev.game.Difficulty;
 import fr.thejordan.dev.game.Game;
+import fr.thejordan.dev.game.Score;
+import fr.thejordan.dev.game.ScoreManager;
 
 import javax.swing.JPanel;
 import java.awt.GridLayout;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.JComboBox;
 import javax.swing.SpringLayout;
 import javax.swing.JButton;
@@ -20,6 +26,7 @@ import javax.swing.JButton;
 public class GameChoser {
 
 	public JFrame frame;
+	public JPanel leaderboard;
 
 	/**
 	 * Create the application.
@@ -85,6 +92,32 @@ public class GameChoser {
 		});
 		
 		panel_2.add(playButton);
+		
+		leaderboard = new JPanel();
+		leaderboard.setBorder(new EmptyBorder(10, 10, 10, 10));
+		List<JLabel> leaderboardLabels = new ArrayList<JLabel>();
+		JLabel leadTop1 = new JLabel("");
+		leaderboard.add(leadTop1);
+		
+		JLabel leadTop2 = new JLabel("");
+		leaderboard.add(leadTop2);
+		
+		JLabel leadTop3 = new JLabel("");
+		leaderboard.add(leadTop3);
+
+		leaderboardLabels.add(leadTop1);
+		leaderboardLabels.add(leadTop2);
+		leaderboardLabels.add(leadTop3);
+		
+		difficultyComboBox.addItemListener((l)->{
+			Difficulty difficulty = (Difficulty) l.getItem();
+			List<Score> top3 = ScoreManager.instance().getTop3(difficulty);
+			showLeadboard(leaderboardLabels, top3);
+		});
+		panel.add(leaderboard, BorderLayout.EAST);
+		leaderboard.setLayout(new GridLayout(0, 1, 0, 0));
+
+		showLeadboard(leaderboardLabels, ScoreManager.instance().getTop3((Difficulty) difficultyComboBox.getSelectedItem()));
 	}
 	
 	public static void invoke() {
@@ -100,4 +133,11 @@ public class GameChoser {
 		});
 	}
 	
+	private void showLeadboard(List<JLabel> labels, List<Score> scoreboard) {
+		for (int i = 0; i < labels.size(); i++) {
+			JLabel label = labels.get(i);
+			if (scoreboard.size() <= i) label.setText((i+1)+" - ");
+			else label.setText((i+1)+" - "+scoreboard.get(i).format());
+		}
+	}
 }

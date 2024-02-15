@@ -63,8 +63,9 @@ public class MainWindow {
 	                        if (found.size() == game.difficulty.volume() / 2) {
 	                            this.timerTask.stop();
 	                            long elapsed = game.difficulty.maxTime - timer;
+	                            int triesUsed = game.difficulty.maxTries - tries;
 	                            String elapsedTime = Utils.formatTime(elapsed);
-	                            Utils.endGameDialog(frame, GameConstants.GAME_OVER_FINISHED_MESSAGE(elapsedTime));
+	                            Utils.endGameSaveScore(frame, GameConstants.GAME_OVER_FINISHED_MESSAGE(elapsedTime), game.difficulty, elapsed, triesUsed);
 	                        }
 	                    } else {
 	                        game.lastClicked.toggle();

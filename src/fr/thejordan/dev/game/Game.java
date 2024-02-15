@@ -20,7 +20,6 @@ public class Game {
 	public Map<Integer, Card> slots = new HashMap<Integer, Card>();
 	
 	public Game(Difficulty difficulty) {
-
 		this.difficulty = difficulty;
 		List<Card> chosen = new ArrayList<Card>(Main.images);
 		chosen = chosen.subList(0, this.difficulty.volume()/2);

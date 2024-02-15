@@ -2,7 +2,7 @@ package fr.thejordan.dev.game;
 
 public enum Difficulty {
 
-	EASY("Easy 2x3",2,3,10,200L),
+	EASY("Easy 2x3",2,3,3,200L),
 	MEDIUM("Medium 3x4",3,4,20,400L),
 	HARD("Hard 4x4",4,4,30,600L);
 	
